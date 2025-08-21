@@ -1,0 +1,8 @@
+.login-container {
+    height: 100vh;
+
+    .login-form-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}

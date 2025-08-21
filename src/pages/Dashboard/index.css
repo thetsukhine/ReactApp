@@ -1,0 +1,38 @@
+@media (min-width: 768px) {
+    .sidebar .offcanvas-lg {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 48px;
+    }
+    .navbar-search {
+        display: block;
+    }
+}
+
+.sidebar .nav-link {
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+    color: #2470dc;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+}
+
+input.checkbox-green[type="checkbox"]:checked {
+    background-color: #00ff00;
+    border-color: #00ff00;
+}
+
+input.checkbox-blue[type="checkbox"]:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+input.checkbox-red[type="checkbox"]:checked {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}

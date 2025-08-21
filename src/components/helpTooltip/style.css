@@ -1,0 +1,9 @@
+.help-tooltip {
+    width: 400px;
+    max-width: 400px;
+
+    .tooltip-inner {
+        width: 400px;
+        max-width: 400px;
+    }
+}
