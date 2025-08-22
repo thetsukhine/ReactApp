@@ -14,7 +14,7 @@ interface Errors {
 }
 
 const ManageLogin = () => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // 画面入力項目
@@ -32,13 +32,14 @@ const ManageLogin = () => {
         setIsLoading(true);
         login(email, password).then(async () => {
             await getMe().then(async (res) => {
+                console.log ("resdata", res.data );
                 if (res.status === 200) {
                     if (res.data.isUserRole === true) {
                         await logout().finally(() => {
                             setResponseErrors({unauthorized: ['メールアドレスまたはパスワードが間違っています']});
                         });
                     } else {
-                     //   navigate(RoutPaths.Dashboard);
+                        navigate(RoutPaths.Dashboard);
                         return;
                     }
                 }
@@ -64,14 +65,15 @@ const ManageLogin = () => {
         return Object.keys(errors).length <= 0;
     }
 
-    useEffect(() => {
+ useEffect(() => {
         setIsLoading(true);
         getMe().then(async (res) => {
+            console.log( "res.data", res.data );
             if (res.status === 200) {
                 if (res.data.isUserRole === true) {
                     await logout();
                 } else {
-                   // navigate(RoutPaths.Dashboard);
+                    navigate(RoutPaths.Dashboard);
                     return;
                 }
             }
@@ -80,6 +82,7 @@ const ManageLogin = () => {
         });
         // eslint-disable-next-line
     }, []);
+
 
     return (
         <div className="container d-flex justify-content-center align-items-center login-container">

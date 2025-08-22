@@ -1,7 +1,9 @@
 export const RoutPaths = {
     Current: `${process.env.REACT_APP_BASE_URL}/`,
-    Login: `${process.env.REACT_APP_BASE_URL}/login`,
-    Dashboard: `${process.env.REACT_APP_BASE_URL}/dashboard`,
+    //Login: `${process.env.REACT_APP_BASE_URL}/login`,
+     Login: "/login",
+    //Dashboard: `${process.env.REACT_APP_BASE_URL}/dashboard`,
+      Dashboard: "/dashboard",
     Notice: `${process.env.REACT_APP_BASE_URL}/notice`,
     CreateNotice: `${process.env.REACT_APP_BASE_URL}/create-notice`,
     NoticeDetail: `${process.env.REACT_APP_BASE_URL}/notice/:id`,

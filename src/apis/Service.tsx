@@ -1,8 +1,8 @@
 import axios from 'axios';
-//import {RoutPaths} from "../config/const";
+import {RoutPaths} from "../config/const";
 import React, {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-//import {ErrorMessages} from "../config/message";
+import {ErrorMessages} from "../config/message";
 
 const defaultHeaderOptions = {
     'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ const defaultHeaderOptions = {
 };
 
 const service = axios.create({
-    baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
+    baseURL:  "http://localhost:8000/api",//  `${process.env.REACT_APP_BACKEND_URL}`,//    
     headers: defaultHeaderOptions,
     // Cookieを送信するための設定
     // https://github.com/axios/axios#readme
@@ -39,16 +39,16 @@ export const ApiService = () => {
         (response) => response,
         async (error) => {
             console.log(`Error${error.response?.status}`);
-            //let message = ErrorMessages.M_E1004;
+            let message = ErrorMessages.M_E1004;
             switch (error.response?.status) {
                 case 400:
-                    // if (window.location.pathname === RoutPaths.CreateManageUser) {
-                    //     // 上記以外の画面は画面側でエラーハンドリングしているためrejectする
-                    //     return Promise.reject(error);
-                    // }
-                    // if (error.response.data && typeof error.response.data === 'string') {
-                    //     message = error.response.data;
-                    // }
+                    if (window.location.pathname === RoutPaths.CreateManageUser) {
+                        // 上記以外の画面は画面側でエラーハンドリングしているためrejectする
+                        return Promise.reject(error);
+                    }
+                    if (error.response.data && typeof error.response.data === 'string') {
+                        message = error.response.data;
+                    }
                     break;
                 case 401:
                     // if (window.location.pathname !== RoutPaths.Login) {

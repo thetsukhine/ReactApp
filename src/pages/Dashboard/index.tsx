@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from "react";
 import './index.css';
 import {Card, Table} from "react-bootstrap";
-// import {Bar} from "react-chartjs-2";
-// import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
+//import {Bar} from "react-chartjs-2";
+//import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
 import {Link, useNavigate} from "react-router-dom";
 import {RoutPaths} from "../../config/const";
-// import {getDashboardNotice} from "../../apis/Notice";
+//import {getDashboardNotice} from "../../apis/Notice";
 import {getDashboardTasks} from "../../apis/Task";
-// import {NoticeCategory, NoticeInfo} from "../../models/Notice";
-// import {TaskInfo} from "../../models/Task";
-// import {stringDatetimeToStringDate} from "../../util/DateTimeUtils";
+import {NoticeCategory, NoticeInfo} from "../../models/Notice";
+//import {TaskInfo} from "../../models/Task";
+//import {stringDatetimeToStringDate} from "../../util/DateTimeUtils";
 import {getSubscriptionSummary} from "../../apis/Contract";
-// import {TaskCategory} from "../TaskList/const";
-// import {generateTaskStatus} from "../../util/TaskUtils";
-// import CenteredSpinner from "../../components/loadingSpinner/CenteredSpinner";
+//import {TaskCategory} from "../TaskList/const";
+//import {generateTaskStatus} from "../../util/TaskUtils";
+//import CenteredSpinner from "../../components/loadingSpinner/CenteredSpinner";
 import {getMe} from "../../apis/ManageUser";
 //import {User} from "../../models/User";
 
@@ -62,7 +62,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    // const [notices, setNotices] = React.useState<NoticeInfo[]>([]);
+     const [notices, setNotices] = React.useState<NoticeInfo[]>([]);
     // const [tasks, setTasks] = React.useState<TaskInfo[]>([]);
     const [applicationData, setApplicationData] = React.useState<number[]>([0, 0, 0, 0, 0, 0, 0]);
 
@@ -72,11 +72,11 @@ const Dashboard = () => {
             //getDashboardNotice(),
             getDashboardTasks(),
             getSubscriptionSummary()
-        ]).then(([noticeRes, taskRes]) => {
+        ]).then(([ taskRes, summaryRes]) => {
             // setNotices(noticeRes.data.notices);
             // setTasks(Array.isArray(taskRes.data.tasks) ? taskRes.data.tasks : []);
-            // const data = summaryRes.data as number[];
-            // setApplicationData(data);
+            const data = summaryRes.data as number[];
+            setApplicationData(data);
         }).finally(() => {
             setIsLoading(false);
         })
@@ -97,10 +97,9 @@ const Dashboard = () => {
                 },
             ],
         };
-        return (
-            //<Bar data={data} options={options}/>
-            <></>
-        )
+        // return (
+        //     <Bar data={data} options={options}/>
+        // )
     }
 
     const handleTaskList = () => {
@@ -138,13 +137,13 @@ const Dashboard = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {/* {notices.map((notice, index) => (
+                                    {notices.map((notice, index) => (
                                         <tr key={index} onClick={() => navigate(`${RoutPaths.Notice}/${notice.id}`)}>
                                             <td>{notice.category === NoticeCategory.Notice ? "お知らせ" : "アプリップリからの案内"}</td>
-                                            <td>{stringDatetimeToStringDate(notice.publishAt)}</td>
+                                            <td>{(notice.publishAt)}</td>
                                             <td>{notice.title}</td>
                                         </tr>
-                                    ))} */}
+                                    ))}
                                     </tbody>
                                 </Table>
                             </div>
@@ -155,7 +154,7 @@ const Dashboard = () => {
                             className={"bg-primary-subtle text-primary-emphasis fw-bold d-flex justify-content-between align-items-center"}>
                             <h5 className={"m-2"}>タスク</h5>
                             <span className={"text-decoration-underline text-dark fw-nomal m-0 p-0 cursor-pointer"}
-                                  tabIndex={202} onClick={handleTaskList}>
+                                tabIndex={202} onClick={handleTaskList}>
                                 タスク一覧
                             </span>
                         </Card.Header>
@@ -191,7 +190,7 @@ const Dashboard = () => {
                             <h5 className={"m-2"}>申し込み推移</h5>
                         </Card.Header>
                         <Card.Body>
-                            {generateBar()}
+                            {/* {generateBar()} */}
                         </Card.Body>
                     </Card>
                 </div>
