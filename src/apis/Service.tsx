@@ -51,21 +51,21 @@ export const ApiService = () => {
                     }
                     break;
                 case 401:
-                    // if (window.location.pathname !== RoutPaths.Login) {
-                    //     window.location.href = RoutPaths.Login;
-                    //     return;
-                    // }
+                    if (window.location.pathname !== RoutPaths.Login) {
+                        window.location.href = RoutPaths.Login;
+                        return;
+                    }
                     // 上記以外の画面は画面側でエラーハンドリングしているためrejectする
                     return Promise.reject(error);
-                // case 500:
-                //     if (error.response.data && typeof error.response.data === 'string') {
-                //         message = error.response.data;
-                //     }
-                //     break;
+                case 500:
+                    if (error.response.data && typeof error.response.data === 'string') {
+                        message = error.response.data;
+                    }
+                    break;
                 default:
-                    // if (error.response.data && typeof error.response.data === 'string') {
-                    //     message = error.response.data;
-                    // }
+                    if (error.response.data && typeof error.response.data === 'string') {
+                        message = error.response.data;
+                    }
                     break;
             }
             //setErrorMessage(message);

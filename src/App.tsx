@@ -16,7 +16,7 @@ function App() {
          {/* <Route path={RoutPaths.Current} element={<ProtectedRoutes/>}> */}
              <Route path={RoutPaths.Dashboard} element={<Dashboard />} />
          {/* </Route> */}
-
+        <Route path={RoutPaths.Notice} element={<Notice />} />
          <Route path="*" element={<Navigate replace to={RoutPaths.Login} />} />
     </Routes>
   );

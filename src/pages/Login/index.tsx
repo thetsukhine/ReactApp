@@ -65,7 +65,7 @@ const ManageLogin = () => {
         return Object.keys(errors).length <= 0;
     }
 
- useEffect(() => {
+useEffect(() => {
         setIsLoading(true);
         getMe().then(async (res) => {
             console.log( "res.data", res.data );
